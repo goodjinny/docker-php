@@ -1,0 +1,10 @@
+services:
+  #nginx
+  web:
+    image: nginx:stable-alpine
+    container_name: web-server
+    ports:
+      - "8083:80"
+  #php
+  #mysql
+  #redis
