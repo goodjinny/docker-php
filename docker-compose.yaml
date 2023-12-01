@@ -13,7 +13,8 @@ services:
       dockerfile: ./php/Dockerfile
     container_name: php8.2
     volumes:
-      - ./app:/app
+      - /var/www/html/vendor
+      - ./app:/var/www/html
   #mysql
   db:
     image: mysql:8.0
