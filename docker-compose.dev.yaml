@@ -11,7 +11,7 @@ services:
   app:
     build:
       dockerfile: ./php/Dockerfile
-      target: app_dev
+      target: ${BUILD_TARGET:-app}
     container_name: app
     volumes:
       - ./app:/var/www/html

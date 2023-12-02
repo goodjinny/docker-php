@@ -1,4 +1,4 @@
-<?php # /app/public/index.php;
+<?php
 
 use App\Repository\TranslationRepository;
 
