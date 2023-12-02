@@ -11,7 +11,7 @@ services:
   app:
     build:
       dockerfile: ./php/Dockerfile
-    container_name: php8.2
+    container_name: app
     volumes:
       - ./app:/var/www/html
     environment:
@@ -20,6 +20,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
+      REDIS_HOST: cache
+      REDIS_PORT: ${REDIS_PORT}
 
   #mysql
   db:
@@ -36,6 +38,9 @@ services:
       MYSQL_PASSWORD: secret
       MYSQL_DATABASE: docker-php
   #redis
+  cache:
+    image: redis:latest
+    container_name: cache
 
 volumes:
   mysqldata:
