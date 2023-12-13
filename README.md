@@ -6,6 +6,9 @@
 ### Run docker compose with specific config file and specified env file
 `docker compose -f docker-compose.dev.yaml --env-file .env.local up`
 
+### Run docker compose with specific config and env files, and ENV variable
+`XDEBUG_MODE=debug docker compose -f docker-compose.dev.yaml --env-file .env.local up`
+
 ### Additional options
 - `-d` - run in detach mode
 - `--build` - build images before run
