@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine as app
+FROM php:8.3-fpm-alpine as app
 LABEL authors="kalaidzhy.o"
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
