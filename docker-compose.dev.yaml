@@ -1,7 +1,8 @@
 services:
   #nginx
   web:
-    image: nginx:stable-alpine
+    build:
+      dockerfile: ./nginx/Dockerfile
     container_name: web-server
     ports:
       - "8083:80"
@@ -17,34 +18,13 @@ services:
       - ./app:/var/www/html
       - ./php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
     environment:
-      MYSQL_HOST: db
-      MYSQL_PORT: ${MYSQL_PORT}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      REDIS_HOST: cache
-      REDIS_PORT: ${REDIS_PORT}
       XDEBUG_MODE: ${XDEBUG_MODE:-off}
-    extra_hosts:
-      - host.docker.internal:host-gateway
   #mysql
   db:
-    image: mysql:8.0
     container_name: db
-    volumes:
-      - mysqldata:/var/lib/mysql
     ports:
       - "3306:3306"
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_USER: user
-      MYSQL_PASSWORD: secret
-      MYSQL_DATABASE: docker-php
-  #redis
-  cache:
-    image: redis:latest
-    container_name: cache
 
 volumes:
   mysqldata:
